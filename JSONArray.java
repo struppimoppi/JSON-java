@@ -238,6 +238,29 @@ public class JSONArray {
                 "] is not a number.");
         }
     }
+    
+    
+    /**
+     * Get the double value associated with an index as boxed Double object making it possible to express null.
+     *
+     * @param index The index must be between 0 and length() - 1.
+     * @return      The value as Double or null.
+     * @throws   JSONException If the key is not found or if the value cannot
+     *  be converted to a number.
+     */
+    public Double getDoubleObject(int index) throws JSONException {
+        Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
+        try {
+            return object instanceof Number
+                ? ((Number)object).doubleValue()
+                : Double.parseDouble((String)object);
+        } catch (Exception e) {
+            throw new JSONException("JSONArray[" + index +
+                "] is not a number.");
+        }
+    }
 
 
     /**
@@ -258,6 +281,28 @@ public class JSONArray {
                 "] is not a number.");
         }
     }
+    
+    
+    /**
+     * Get the int value associated with an index as boxed Integer making it possible to express null.
+     *
+     * @param index The index must be between 0 and length() - 1.
+     * @return      The value as Integer or null.
+     * @throws   JSONException If the key is not found or if the value is not a number.
+     */
+    public Integer getIntObject(int index) throws JSONException {
+        Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
+        try {
+            return object instanceof Number
+                ? ((Number)object).intValue()
+                : Integer.parseInt((String)object);
+        } catch (Exception e) {
+            throw new JSONException("JSONArray[" + index +
+                "] is not a number.");
+        }
+    }
 
 
     /**
@@ -269,6 +314,8 @@ public class JSONArray {
      */
     public JSONArray getJSONArray(int index) throws JSONException {
         Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
         if (object instanceof JSONArray) {
             return (JSONArray)object;
         }
@@ -286,6 +333,8 @@ public class JSONArray {
      */
     public JSONObject getJSONObject(int index) throws JSONException {
         Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
         if (object instanceof JSONObject) {
             return (JSONObject)object;
         }
@@ -313,6 +362,29 @@ public class JSONArray {
                 "] is not a number.");
         }
     }
+    
+    
+    /**
+     * Get the long value associated with an index as boxed Long object maing it possible to express null values.
+     *
+     * @param index The index must be between 0 and length() - 1.
+     * @return      The value as Long or null.
+     * @throws   JSONException If the key is not found or if the value cannot
+     *  be converted to a number.
+     */
+    public Long getLongObject(int index) throws JSONException {
+        Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
+        try {
+            return object instanceof Number
+                ? ((Number)object).longValue()
+                : Long.parseLong((String)object);
+        } catch (Exception e) {
+            throw new JSONException("JSONArray[" + index +
+                "] is not a number.");
+        }
+    }
 
 
     /**
@@ -323,6 +395,8 @@ public class JSONArray {
      */
     public String getString(int index) throws JSONException {
         Object object = this.get(index);
+        if (object.equals(JSONObject.NULL))
+        	return null;
         if (object instanceof String) {
             return (String)object;
         }
