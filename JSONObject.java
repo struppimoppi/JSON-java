@@ -595,7 +595,7 @@ public class JSONObject {
         if (length == 0) {
             return null;
         }
-        Iterator iterator = jo.keys();
+        Iterator iterator = jo.keys().iterator();
         String[] names = new String[length];
         int i = 0;
         while (iterator.hasNext()) {
@@ -701,8 +701,8 @@ public class JSONObject {
      *
      * @return An iterator of the keys.
      */
-    public Iterator keys() {
-        return this.map.keySet().iterator();
+    public Set keys() {
+        return this.map.keySet();
     }
 
 
@@ -724,7 +724,7 @@ public class JSONObject {
      */
     public JSONArray names() {
         JSONArray ja = new JSONArray();
-        Iterator  keys = this.keys();
+        Iterator  keys = this.keys().iterator();
         while (keys.hasNext()) {
             ja.put(keys.next());
         }
@@ -1551,7 +1551,7 @@ public class JSONObject {
         try {
             boolean commanate = false;
             final int length = this.length();
-            Iterator keys = this.keys();
+            Iterator keys = this.keys().iterator();
             writer.write('{');
 
             if (length == 1) {
