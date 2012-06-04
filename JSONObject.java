@@ -37,6 +37,9 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
 
 /**
  * A JSONObject is an unordered collection of name/value pairs. Its external
@@ -1347,6 +1350,7 @@ public class JSONObject {
         try {
             return this.toString(0);
         } catch (Exception e) {
+            Logger.getLogger("JSON").error("toString() caused the following error:", e);
             return null;
         }
     }
